@@ -1,0 +1,13 @@
+
+.btn {
+    display: flex;
+    justify-content: right;
+    justify-items: right;
+}
+.btn h1{
+    margin-left:20px;
+    font-size: 20px;
+    transform: rotate(-90deg);
+}
+
+

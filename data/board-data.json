@@ -1,0 +1,35 @@
+[
+    {
+        "name":"Not started",
+        "items": [
+            
+        ]
+    },
+    {
+        "name":"In Progress",
+        "items": [
+
+        ]
+    },
+    {
+        "name":"Closing",
+        "items": [
+            
+        ]
+    },
+    {
+        "name":"Payments",
+        "items": [
+            
+        ]
+    },
+
+    {
+        "name":"Dead",
+        "items": [
+            
+        ]
+    }
+
+]
+

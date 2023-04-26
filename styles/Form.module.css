@@ -1,0 +1,32 @@
+.error{
+    display: flex;
+    justify-content: center;
+    color:red;
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+
+.errorModal{
+    display: flex;
+    justify-content: center;
+    color:red;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.toastLogin{
+    position: absolute;
+    top: 20;
+    right: 10;
+}
+
+.buttonCancel{
+    margin-top:5;
+    margin-bottom:5;
+    background-Color: 'red';
+    color:'white';
+}
+.buttonCancel:hover {
+    color: 'white';
+    background-Color: '#AB341A';
+  };
