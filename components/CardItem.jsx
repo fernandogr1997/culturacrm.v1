@@ -22,8 +22,9 @@ import { EditClient } from '../Modals/EditClient';
 import { Comentarios } from '../Modals/Comentarios';
 
 //css
-import '../styles/CardItem.module.css';
+import '../styles/CardItem.css';
 import { useDispatch } from "react-redux";
+import { Documentos } from "../Modals/Documentos";
 
 function CardItem({ data, index }) {
   //modalNewClient 
@@ -33,7 +34,11 @@ function CardItem({ data, index }) {
   
   const [openComentarios, setOpenComentarios] = useState(false);
   const handleOpenComentarios = () => setOpenComentarios(true);
-  const CloseComentarios = () => setOpenModal(false);
+  const CloseComentarios = () => setOpenComentarios(false);
+
+  const [openDocumentos, setOpenDocumentos] = useState(false);
+  const handleOpenDocumentos = () => setOpenDocumentos(true);
+  const CloseDocumentos = () => setOpenDocumentos(false);
   
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -99,6 +104,15 @@ function CardItem({ data, index }) {
         handleClose={CloseComentarios}
         id={data.id}
       />
+
+      <Documentos
+        open={openDocumentos}
+        handleOpen={handleOpenDocumentos}
+        handleClose={CloseDocumentos}
+        id={data.id}
+      />
+
+
       {/* Modales */}
 
     <Draggable index={index} draggableId={data.id.toString()}>
@@ -163,7 +177,10 @@ function CardItem({ data, index }) {
                 <span>{data.chat}</span>
               </span>
               <span className="flex space-x-1 items-center">
-                <PaperClipIcon className="cursor-pointer w-8 h-8 text-gray-500 hover:text-gray-900"/>
+                <PaperClipIcon 
+                  className="cursor-pointer w-8 h-8 text-gray-500 hover:text-gray-900"
+                  onClick={handleOpenDocumentos}
+                />
                 <span>{data.attachment}</span>
               </span>
             </div>
@@ -176,7 +193,6 @@ function CardItem({ data, index }) {
                       alt="avt"
                       width="40"
                       height="40"
-                      objectFit="cover"
                       className=" rounded-full "
                     />
                   </li>

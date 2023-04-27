@@ -71,7 +71,6 @@ function TopBar(props) {
                             alt='logo'
                             width="36"
                             height="36"
-                            objectFit="cover"
                             className=" rounded-full "
                             onClick={handleClick}
                         />

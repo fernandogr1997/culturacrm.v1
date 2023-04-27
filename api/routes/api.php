@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\DocumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,16 @@ Route::controller(ClientController::class)->group(function () {
     Route::put('/client/proceso/{id}','proceso');
     Route::put('/client/eliminar/{id}','dead');
     Route::delete('/client/{id}','destroy');
+});
+
+Route::controller(ComentarioController::class)->group(function () {
+    Route::post('/new_comentario','store');
+    Route::get('/comentarios/{id}','show');
+});
+
+Route::controller(DocumentoController::class)->group(function () {
+    Route::post('/news_documentos/{id}','store');
+    Route::get('/comentarios/{id}','show');
 });
 
 // Route::controller(PdfController::class)->group(function () {

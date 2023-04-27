@@ -5,6 +5,7 @@ const initialState = {
   status: 'checking',
   token: '',
   getDatos: false,
+  Comentarios: false,
 }
 
 
@@ -30,6 +31,13 @@ export const credencialesSlice = createSlice({
         state.getDatos = false;
       }
     },
+    actualizarComentarios: (state) => {
+      if(state.Comentarios === false){
+        state.Comentarios = true;
+      }else if(state.Comentarios === true){
+        state.Comentarios = false;
+      }
+    },
     checkingCredentials: (state) => {
       state.status = 'checking';
     },
@@ -41,6 +49,12 @@ export const credencialesSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { checkingCredentials,login,logout,actualizarDashboard,verdato } = credencialesSlice.actions
+export const { 
+  checkingCredentials,
+  login,
+  logout,
+  actualizarDashboard,
+  actualizarComentarios,
+  verdato } = credencialesSlice.actions
 
 export default credencialesSlice.reducer

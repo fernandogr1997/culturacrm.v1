@@ -14,7 +14,7 @@ import {
   Divider,
   TextField,
 } from "@mui/material";
-import '../../styles/Form.module.css';
+import '../../styles/Form.css';
 import { login } from '../../app/slices/credencialesSlice';
 import Cookies from 'js-cookie';
 

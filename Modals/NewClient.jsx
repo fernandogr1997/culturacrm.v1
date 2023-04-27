@@ -11,7 +11,7 @@ import Modal from "@mui/material/Modal";
 import { Grid, TextField } from "@mui/material";
 
 //css
-import styles from '../styles/Form.module.css';
+import '../styles/Form.css';
 import { actualizarDashboard } from "../app/slices/credencialesSlice";
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -146,7 +146,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.clientName && <div className={styles.errorModal}>{respuesta.clientName}</div>}
+              {respuesta.clientName && <div className={'errorModal'}>{respuesta.clientName}</div>}
             </Grid>
           
             <Grid item xs={6} md={6}>
@@ -159,7 +159,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.agenteName && <div className={styles.errorModal}>{respuesta.agenteName}</div>}
+              {respuesta.agenteName && <div className={'errorModal'}>{respuesta.agenteName}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -171,7 +171,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.emailAddress && <div className={styles.errorModal}>{respuesta.emailAddress}</div>}
+              {respuesta.emailAddress && <div className={'errorModal'}>{respuesta.emailAddress}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -183,7 +183,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.address && <div className={styles.errorModal}>{respuesta.address}</div>}
+              {respuesta.address && <div className={'errorModal'}>{respuesta.address}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -195,7 +195,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.phone && <div className={styles.errorModal}>{respuesta.phone}</div>}
+              {respuesta.phone && <div className={'errorModal'}>{respuesta.phone}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -207,7 +207,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.twoPhone && <div className={styles.errorModal}>{respuesta.twoPhone}</div>}
+              {respuesta.twoPhone && <div className={'errorModal'}>{respuesta.twoPhone}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -219,7 +219,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.callBackAppointment && <div className={styles.errorModal}>{respuesta.callBackAppointment}</div>}
+              {respuesta.callBackAppointment && <div className={'errorModal'}>{respuesta.callBackAppointment}</div>}
             </Grid>
 
             <Grid item xs={12} md={12}>
@@ -259,7 +259,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.resortName && <div className={styles.errorModal}>{respuesta.resortName}</div>}
+              {respuesta.resortName && <div className={'errorModal'}>{respuesta.resortName}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -271,7 +271,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.location && <div className={styles.errorModal}>{respuesta.location}</div>}
+              {respuesta.location && <div className={'errorModal'}>{respuesta.location}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -283,7 +283,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.unitSize && <div className={styles.errorModal}>{respuesta.unitSize}</div>}
+              {respuesta.unitSize && <div className={'errorModal'}>{respuesta.unitSize}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -295,7 +295,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.weeksPoints && <div className={styles.errorModal}>{respuesta.weeksPoints}</div>}
+              {respuesta.weeksPoints && <div className={'errorModal'}>{respuesta.weeksPoints}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -307,7 +307,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.years && <div className={styles.errorModal}>{respuesta.years}</div>}
+              {respuesta.years && <div className={'errorModal'}>{respuesta.years}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -319,7 +319,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.maintenceFee && <div className={styles.errorModal}>{respuesta.maintenceFee}</div>}
+              {respuesta.maintenceFee && <div className={'errorModal'}>{respuesta.maintenceFee}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -331,7 +331,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.priceOffered && <div className={styles.errorModal}>{respuesta.priceOffered}</div>}
+              {respuesta.priceOffered && <div className={'errorModal'}>{respuesta.priceOffered}</div>}
             </Grid>
             <Grid item xs={6} md={6}>
               <TextField
@@ -343,7 +343,7 @@ export const NewClient = ({ open, handleOpen, handleClose }) => {
                 variant="standard"
                 sx={{ width: "100%" }}
               />
-              {respuesta.pendingBalance && <div className={styles.errorModal}>{respuesta.pendingBalance}</div>}
+              {respuesta.pendingBalance && <div className={'errorModal'}>{respuesta.pendingBalance}</div>}
             </Grid>
             <Grid item xs={2} md={2}>
             <Button

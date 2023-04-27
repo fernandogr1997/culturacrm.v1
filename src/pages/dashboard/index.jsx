@@ -48,10 +48,6 @@ const Dashboard = () => {
     });
 
     console.log(data);
-    // setrespuesta(data);
-    // if(data.respuesta){toast.error(data.respuesta)}
-
-    // if(data.accessToken){
 
   }
 
