@@ -1,29 +1,24 @@
 import { useState, useEffect } from "react";
 import React from 'react';
-
-import axios from "axios";
-import { backendApi } from "../backendApi/backendApi";
-import { Dropzone } from "../components/Dropzone";
 import Cookies from 'js-cookie';
+import { useSelector, useDispatch } from 'react-redux';
+
+//components
+import { Dropzone } from "../components/ModalDocument/Dropzone";
 
 //material ui
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import CloseIcon from '@mui/icons-material/Close';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { Box, TextField } from "@mui/material";
-import { actualizarComentarios } from "../app/slices/credencialesSlice";
+import Button from "@mui/material/Button";
 
 //css
 import '../styles/Comentarios.css';
+import { DownloadFiles } from "../components/ModalDocument/DownloadFiles";
+import { backendApi } from "../backendApi/backendApi";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -40,13 +35,55 @@ const style = {
 
 export const Documentos = ({ open, handleOpen, handleClose, id }) => {
 
-  const [respuesta, setRespuesta] = useState({});
-  const [Data, setData] = useState([]);
-  const dispatch = useDispatch();
-  const Comentarios = useSelector((state) => state.credenciales.Comentarios)
-
   const [name, setname] = useState();
+  const [Datos, setDatos] = useState([]);
+  const [DownLoad, setDownLoad] = useState(false);
+
   const preClose = () => handleClose();
+  const [value, setValue] = useState('1');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    if (newValue === '2') {
+      setDownLoad(true);
+    } else {
+      setDownLoad(false);
+    }
+  };
+
+  const recargar = () => {
+    setValue('2');
+    if (DownLoad === false) {
+      setDownLoad(true);
+    } else if (DownLoad === true) {
+      setDownLoad(false);
+    }
+  }
+  const reload = () => {
+    if (DownLoad === false) {
+      setDownLoad(true);
+    } else if (DownLoad === true) {
+      setDownLoad(false);
+    }
+  }
+
+  useEffect(() => {
+    const getDatos = async () => {
+
+      const { data } = await axios({
+        method: 'GET',
+        url: `${backendApi}/documentos/${id}`,
+      });
+
+      if (!data || data.length === 0) {
+          reload();
+      } else {
+        setDatos(data);
+      }
+
+    }
+    getDatos();
+  }, [DownLoad])
 
   useEffect(() => {
     const name = Cookies.get('user');
@@ -61,17 +98,41 @@ export const Documentos = ({ open, handleOpen, handleClose, id }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-
         <Box sx={style} className="overflow-y-auto overflow-x-hidden  w-full h-96">
-          <section className='section '>
-            <div className='container'>
-              <h1 className='title text-3xl font-bold'>Upload Files</h1>
-              <Dropzone 
-                className='p-16 mt-10 border border-neutral-200' 
+        <Button
+              sx={{
+                position:'absolute',
+                right:0,
+                top:0,
+                margin:0,
+                
+              }}
+              onClick={preClose}
+            >
+            <CloseIcon/>
+          </Button>
+
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChange} aria-label="lab API tabs example">
+                <Tab label="Upload Files" value="1" />
+                <Tab label="Download files" value="2" />
+              </TabList>
+            </Box>
+
+            <TabPanel value="1">
+              <Dropzone
+                className='p-16 mt-10 border border-neutral-200'
                 id={id}
+                recargar={recargar}
               />
-            </div>
-          </section>
+            </TabPanel>
+
+            <TabPanel value="2">
+              <DownloadFiles Datos={Datos} />
+            </TabPanel>
+          </TabContext>
+
         </Box>
       </Modal>
     </>

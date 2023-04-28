@@ -18,7 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, TextField } from "@mui/material";
-import { actualizarComentarios } from "../app/slices/credencialesSlice";
+import { actualizarComentarios, actualizarDashboard } from "../app/slices/credencialesSlice";
 
 //css
 import '../styles/Comentarios.css';
@@ -79,7 +79,6 @@ export const Comentarios = ({ open, handleOpen, handleClose, id }) => {
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
-    // console.log(value);
 
     setForm((prevalue) => {
       return {
@@ -106,8 +105,8 @@ export const Comentarios = ({ open, handleOpen, handleClose, id }) => {
     setRespuesta(data);
 
     if (data.respuesta) {
-      handleClose();
       dispatch(actualizarComentarios());
+      dispatch(actualizarDashboard());
     }
 
   }

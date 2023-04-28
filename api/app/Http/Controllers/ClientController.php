@@ -16,18 +16,18 @@ class ClientController extends Controller
     {
         $Clients = Client::all();
         $procesos = DB::table('procesos')->get();
-
+        
         $Clientsx = json_decode($Clients, true);
         $procesosx = json_decode($procesos, true);
-
+        
         $data = [];
-
+        
         foreach ($procesosx as $proceso) {
             $id_proceso = $proceso['id'];
             $processName = $proceso['processName'];
-
+            
             $items = []; // Reiniciar $items
-
+            
             foreach ($Clientsx as $client) {
                 $id = $client['id'];
                 $id_proceso_client = $client['id_procceso'];
@@ -35,13 +35,20 @@ class ClientController extends Controller
                 $clientName = $client['clientName'];
                 $avt = $client['avt'];
 
+                $comentarios = DB::table('comentarios')
+                    ->where('id_client', '=', $id)
+                    ->count();
+                $documentos = DB::table('documentos')
+                    ->where('id_client', '=', $id)
+                    ->count();
+
                 if ($id_proceso_client === $id_proceso) {
                     $arrayitem = array(
                         "id" => $id,
                         "priority" =>  $priority,
                         "title" =>  $clientName,
-                        "chat" =>  0,
-                        "attachment" =>  0,
+                        "chat" =>  $comentarios,
+                        "attachment" =>  $documentos,
                         "assignees" =>  array(
                             "avt" =>  $avt
                         )

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Documento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class DocumentoController extends Controller
 {
@@ -13,7 +15,7 @@ class DocumentoController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -29,34 +31,36 @@ class DocumentoController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $files = $request->file('file');
-        
-        // foreach ($files as $file) {
-        //     $path = $file->store('/public/'.$id);
-        //     if (Storage::putFileAs('/public/'. $id . '/', $file, $file->getClientOriginalName())) {
-        //         Documento::create([
-        //             'id_client' => $id,
-        //             'doc_name' => $file->getClientOriginalName(),
-        //             'doc_path' => $path
-        //         ]);
-        //     } else {
-        //         return response()->json([
-        //             'error' => 'Error al guardar el archivo.'
-        //         ], 500);
-        //     }
-        // }
-        
-        return response()->json([
-            'respuesta' => $files
-        ]);
-    }
 
+        // Comprueba si la carpeta no existe, si es así la crea
+        $path = public_path() . '/Archivos/' . $id;
+        $doc_path = '/api/public/Archivos/'.$id;
+
+        // Carga los archivos en la carpeta correspondiente
+        $file = $request->file('file');
+        $filename = uniqid() . $file->getClientOriginalName();
+        $file->move($path, $filename);
+
+        Documento::create([
+            'id_client' => $id,
+            'doc_name' => $filename,
+            'doc_path' => $doc_path . '/' . $filename
+        ]);
+
+        return response()->json(['message' => 'Archivos cargados exitosamente']);
+    }
+   
     /**
      * Display the specified resource.
      */
-    public function show(Documento $documento)
+    public function show($id)
     {
-        //
+        $Documentos = DB::table('documentos')
+            ->where('id_client', '=', $id)
+            ->orderByDesc('created_at')
+            ->get();
+
+        return $Documentos;
     }
 
     /**

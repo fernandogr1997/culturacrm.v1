@@ -46,7 +46,7 @@ Route::controller(ComentarioController::class)->group(function () {
 
 Route::controller(DocumentoController::class)->group(function () {
     Route::post('/news_documentos/{id}','store');
-    Route::get('/comentarios/{id}','show');
+    Route::get('/documentos/{id}','show');
 });
 
 // Route::controller(PdfController::class)->group(function () {

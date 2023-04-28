@@ -1,0 +1,6 @@
+.my-swal {
+        display: -webkit-box;
+        display: flex;
+        position: fixed;
+        z-index: 300000;
+}
