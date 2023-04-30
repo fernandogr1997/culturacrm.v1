@@ -16,7 +16,7 @@ import '../../styles/Fileupload.css';
 import { actualizarDashboard } from '../../app/slices/credencialesSlice';
 import { useDispatch } from 'react-redux';
 
-export const Dropzone = ({className,recargar, id}) => {
+export const Dropzone = ({className,recargar,handleClose, id}) => {
     const [files, setFiles] = useState([])
     const [rejected, setRejected] = useState([])
     const [Loading, setLoading] = useState(false)
@@ -96,8 +96,15 @@ export const Dropzone = ({className,recargar, id}) => {
       setFiles([]);
       setRejected([]);
       setLoading(false);
+
       dispatch(actualizarDashboard());
-      recargar();
+      handleClose();
+      Swal.fire({
+            icon: "success",
+            title: "Exito",
+            text: "Archivos Subidos correctamente.",
+            timer: 4000,
+          });
       
       
     }

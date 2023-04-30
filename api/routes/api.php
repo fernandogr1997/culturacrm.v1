@@ -36,6 +36,7 @@ Route::controller(ClientController::class)->group(function () {
     Route::put('/client/update/{id}','update');
     Route::put('/client/proceso/{id}','proceso');
     Route::put('/client/eliminar/{id}','dead');
+    Route::put('/client/priority/{id}','priority');
     Route::delete('/client/{id}','destroy');
 });
 

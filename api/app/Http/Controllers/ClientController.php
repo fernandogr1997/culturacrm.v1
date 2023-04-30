@@ -233,6 +233,19 @@ class ClientController extends Controller
         return response()
         ->json(['respuesta' => 'Registro eliminado exitosamente.']);
     }
+    
+    public function priority(Request $request, $id)
+    {
+        
+        $Client = Client::findOrFail($id);
+        
+        $Client->priority = $request->priority;
+
+        $Client->save();
+
+        return response()
+        ->json(['respuesta' => 'Priority Actualizado exitosamente.']);
+    }
 
     /**
      * Remove the specified resource from storage.

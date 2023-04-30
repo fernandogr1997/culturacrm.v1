@@ -75,15 +75,11 @@ export const Documentos = ({ open, handleOpen, handleClose, id }) => {
         url: `${backendApi}/documentos/${id}`,
       });
 
-      if (!data || data.length === 0) {
-          reload();
-      } else {
         setDatos(data);
-      }
 
     }
     getDatos();
-  }, [DownLoad])
+  }, [DownLoad,open])
 
   useEffect(() => {
     const name = Cookies.get('user');
@@ -125,6 +121,7 @@ export const Documentos = ({ open, handleOpen, handleClose, id }) => {
                 className='p-16 mt-10 border border-neutral-200'
                 id={id}
                 recargar={recargar}
+                handleClose={handleClose}
               />
             </TabPanel>
 

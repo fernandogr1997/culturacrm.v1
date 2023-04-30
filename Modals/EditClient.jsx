@@ -48,7 +48,7 @@ export const EditClient = ({ open, handleOpen, handleClose, id }) => {
 
     GetData();
 
-  },[]);
+  },[open]);
   
 
   const [Form, setForm] = useState({
