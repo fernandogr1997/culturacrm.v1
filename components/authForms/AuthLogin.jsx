@@ -60,6 +60,7 @@ export const AuthLogin = ({ title, subtitle, subtext }) => {
         const token = accessToken.split('|');
         Cookies.set('token', `${token[1]}`);
         Cookies.set('user', user.name);
+        Cookies.set('permisos', user.permisos);
         dispatch(login(token[1]));
     }
 

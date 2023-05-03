@@ -20,6 +20,7 @@ import {
 import BoardData from "../../../data/board-data.json";
 import { useSelector,useDispatch } from "react-redux";
 import { verdato } from "../../../app/slices/credencialesSlice";
+import Cookies from 'js-cookie';
 
 
 function createGuidId() {
@@ -34,6 +35,7 @@ const Dashboard = () => {
   const [boardData, setBoardData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [respuesta, setrespuesta] = useState([]);
+  const [Permisos, setPermisos] = useState('');
   const getDatos = useSelector((state) => state.credenciales.getDatos)
   const dispatch = useDispatch();
 
@@ -59,7 +61,33 @@ const Dashboard = () => {
         method: 'GET',
         url: `${backendApi}/clients`,
       });
-      setBoardData(data);
+
+      let permisos = Cookies.get('permisos');
+      setPermisos(permisos);
+      //admin
+      if(permisos === '1'){
+        setBoardData(data);
+        
+        
+      //Broker
+      }else if(permisos === '2'){
+        const datos = data.slice(1, 5);
+        setBoardData(datos);
+        
+
+      //Broker jr  
+      }else if(permisos === '3'){
+        const datos = data.slice(0, 2);
+        setBoardData(datos);
+        
+
+      //secretaria  
+      }else if(permisos === '4'){
+        const datos = data.slice(0, 1);
+        setBoardData(datos);
+        
+
+      }
     }
 
     GetData();
@@ -100,7 +128,21 @@ const Dashboard = () => {
     }
 
     const proceso = findItemIndexesById(newBoardData,idCard);
-    enviarDatos(idCard,proceso.sectionIndex);
+    let sectionindex = proceso.sectionIndex;
+    //Broker
+    if(Permisos === '2'){
+       sectionindex = (1 + sectionindex);
+    }
+    // //Broker jr  
+    // }else if(Permisos === '3'){
+    //   let sectionindex = proceso.sectionIndex;
+
+    // //secretaria  
+    // }else if(Permisos === '4'){
+    //   let sectionindex = proceso.sectionIndex;
+    // }
+
+    enviarDatos(idCard,sectionindex);
 
 
   }
@@ -177,8 +219,12 @@ const Dashboard = () => {
 
           <DragDropContext onDragEnd={onDragEnd}>
             <div className="flex grid-cols-5 gap-5 my-5">
+
               {boardData.map((board, bIndex) => {
+
+                
                 return (
+
                   <div key={board.name}>
                     <Droppable droppableId={bIndex.toString()}>
                       {(provided, snapshot) => (
@@ -225,6 +271,7 @@ const Dashboard = () => {
                       )}
                     </Droppable>
                   </div>
+
                 );
               })}
             </div>
